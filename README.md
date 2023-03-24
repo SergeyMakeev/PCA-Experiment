@@ -2,4 +2,6 @@
 PCA image compression experiments 
 
 
-Textures from https://sketchfab.com/3d-models/slum-house-e902e0af80804d01924387da6af8eecf by https://sketchfab.com/designbureau
+https://sketchfab.com/3d-models/dae-bilora-bella-46-camera-game-ready-asset-eeb9d9f0627f4783b5d16a8732f0d1a4
+by https://sketchfab.com/MartijnVaes
+

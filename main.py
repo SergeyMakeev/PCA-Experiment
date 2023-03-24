@@ -152,6 +152,7 @@ def normalize_img(img, weight):
 def denormalize_img(img, weight):
     # convert to -1..1 and then multiply by weight
     denormalized_img = np.clip(img / weight, -1, 1) * 127.5 + 127.5
+    #denormalized_img = img / weight * 127.5 + 127.5
     return convert_to_u8(denormalized_img)
 
 
@@ -167,13 +168,13 @@ def test():
     roughness_weight = 1
 
     # load textures as num_pixels x 3 (RGB) arrays
-    albedo_orig = cv2.imread("02_BaseColor.png")
+    albedo_orig = cv2.imread("Camera_Base_color.png")
     albedo = albedo_orig.reshape(-1, 3)
-    normal_orig = cv2.imread("02_Normal.png")
+    normal_orig = cv2.imread("Camera_Normal_DirectX.png")
     normal = normal_orig.reshape(-1, 3)
-    metallic_orig = cv2.imread("02_Metallic.png")
+    metallic_orig = cv2.imread("Camera_Metallic.png")
     metallic = metallic_orig.reshape(-1, 3)
-    roughness_orig = cv2.imread("02_Roughness.png")
+    roughness_orig = cv2.imread("Camera_Roughness.png")
     roughness = roughness_orig.reshape(-1, 3)
 
     # metallic = quantize_to_2bit(metallic)
@@ -225,12 +226,21 @@ def test():
     cv2.imwrite("_packed_rgb_a.png", packed_image_rgb_a.reshape((albedo_orig.shape[0], albedo_orig.shape[1], 3)))
     cv2.imwrite("_packed_rgb_b.png", packed_image_rgb_b.reshape((albedo_orig.shape[0], albedo_orig.shape[1], 3)))
 
+    np.set_printoptions(suppress=True)
     print(pca.explained_variance_ratio_)
     print(pca.components_.shape)
     print("PCA Components")
     print(pca.components_)
     print("PCA Mean")
     print(pca.mean_)
+    print("MinA")
+    print(min_a)
+    print("RangeA")
+    print(range_a)
+    print("MinB")
+    print(min_b)
+    print("RangeB")
+    print(range_b)
 
     print("Reconstruct original images")
 
